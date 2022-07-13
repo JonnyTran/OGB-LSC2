@@ -21,5 +21,5 @@ nvidia-docker run -p 8888:8888 \
                   -e JUPYTER_ENABLE_LAB=yes \
                   -e JUPYTER_TOKEN=docker \
                   --name jupyter \
-                  -d jonnytran/ogb-lsc2:latest
+                  -d jonnytran/ogb-lsc2:latest jupyter lab --no-browser --autoreload --log-level='ERROR'
 ```
