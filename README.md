@@ -1,6 +1,8 @@
 # OGB-LSC2
 Docker set up for the [OGB Large Scale Challenge](https://ogb.stanford.edu/neurips2022/) with graph neural networks.
 
+The `jonnytran/ogb-lsc2` docker image [jonnytran/ogb-lsc2](https://hub.docker.com/r/jonnytran/ogb-lsc2) contains the OGB datasets at `~/data` and codes at `~/src/`.
+
 # Requirements
 Must have `docker` or `nvidia-docker` if using GPUS.
 
