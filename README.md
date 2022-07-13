@@ -17,5 +17,5 @@ nvidia-docker run --gpus all \
                   --rm -it jonnytran/ogb-lsc2 /bin/bash
 
 ### If running an interactive Jupyter Notebook inside the container
-jupyter lab --ip 0.0.0.0 --no-browser --autoreload --NotebookApp.iopub_data_rate_limit=2147483647 --port 8888 --log-level='ERROR' --allow-root
+jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERROR' --allow-root
 ```
