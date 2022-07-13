@@ -12,7 +12,7 @@ def load_dataset(args: Namespace):
         from ogb.nodeproppred import DglNodePropPredDataset as NodePropPredDataset
         from ogb.linkproppred import DglLinkPropPredDataset as LinkPropPredDataset
 
-    # Avoid
+    # Avoid running into prompts while building docker image
     with mock.patch("ogb.lsc.input", new=fake_input("y")), \
             mock.patch("ogb.utils.url.input", new=fake_input("y")), \
             mock.patch("ogb.nodeproppred.input", new=fake_input("y")):
