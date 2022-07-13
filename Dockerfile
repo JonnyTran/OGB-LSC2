@@ -37,9 +37,9 @@ EXPOSE 8888/tcp
 # Copy source code & data
 COPY src/ src/
 COPY notebooks/ notebooks/
-#COPY data/ data/
+COPY data/ data/
 RUN chown -R ${NB_USER}:${NB_USER} /home/${NB_USER}/*
-RUN chmod -R 775 /home/${NB_USER}/*
+RUN chmod -R 777 /home/${NB_USER}/*
 
 # Script which launches RUN commands in Dockerfile
 USER 1000
