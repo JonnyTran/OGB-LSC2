@@ -1,7 +1,7 @@
 # OGB-LSC2
 Docker set up for the [OGB Large Scale Challenge](https://ogb.stanford.edu/neurips2022/) with graph neural networks.
 
-The [jonnytran/ogb-lsc2](https://hub.docker.com/r/jonnytran/ogb-lsc2) docker image stores the OGB datasets at `~/data` and codes at `~/src/`. When running, the container will write persistent data to `~/data`, which *should* automatically be saved into the docker image.
+The [jonnytran/ogb-lsc2](https://hub.docker.com/r/jonnytran/ogb-lsc2) docker image stores the OGB datasets at the container's `~/data/` and codes at `~/src/`. When running, the container will write persistent data to the host's `<repo>/data/`, which *should* automatically be saved into the docker image when pushing it to the Docker Hub.
 
 # Requirements
 Must have `docker` or `nvidia-docker` if using GPUS.
