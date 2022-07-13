@@ -3,6 +3,12 @@ Docker set up for the [OGB Large Scale Challenge](https://ogb.stanford.edu/neuri
 
 The [jonnytran/ogb-lsc2](https://hub.docker.com/r/jonnytran/ogb-lsc2) docker image stores the OGB datasets at the container's `~/data/` and codes at `~/src/`. When running, the container will write persistent data to the host's `<repo_dir>/data/`, which *should* automatically be saved into the docker image when pushing it to the Docker Hub.
 
+This project contains:
+
+- A git repo containing code that you’re working on.
+- A Dockerfile that builds that code and downloads the OGB-LSC dataset into a working container.
+- A Docker-compose.yml file you use to run that container
+
 # Requirements
 Must have `docker` or `nvidia-docker` if using GPUS.
 
