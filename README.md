@@ -11,15 +11,11 @@ docker pull jonnytran/ogb-lsc2:latest
 
 ### Interactive shell
 nvidia-docker run --gpus all \
-                  -v $(pwd)/data/:/root/data/ \
-                  --rm -it jonnytran/ogb-lsc2:latest /bin/bash
-
-### or run an interactive Jupyter Notebook
-nvidia-docker run -p 8888:8888 \
+                  -p 8888:8888 \
                   -v $(pwd)/data/:/root/data/ \
                   -v $(pwd)/notebooks/:/root/notebooks/ \
-                  -e JUPYTER_ENABLE_LAB=yes \
-                  -e JUPYTER_TOKEN=docker \
-                  --name jupyter \
-                  -d jonnytran/ogb-lsc2:latest jupyter lab --no-browser --autoreload --log-level='ERROR'
+                  --rm -it jonnytran/ogb-lsc2 /bin/bash
+
+### If running an interactive Jupyter Notebook inside the container
+jupyter lab --ip 0.0.0.0 --no-browser --autoreload --NotebookApp.iopub_data_rate_limit=2147483647 --port 8888 --log-level='ERROR' --allow-root
 ```
