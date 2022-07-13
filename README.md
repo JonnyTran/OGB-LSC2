@@ -6,10 +6,13 @@ Must have `docker` or `nvidia-docker` if using GPUS.
 
 # Usage
 ```sh
+### Pull
+docker pull jonnytran/ogb-lsc2:latest
+
 ### Interactive shell
 nvidia-docker run --gpus all 
                   -v $(pwd)/data/:/root/data/
-                  --rm -it jonnytran/ogb-lsc2:0.1 /bin/bash
+                  --rm -it jonnytran/ogb-lsc2:latest /bin/bash
 
 ### or run an interactive Jupyter Notebook
 nvidia-docker run -p 8888:8888 \
