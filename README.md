@@ -5,6 +5,7 @@ Docker set up for the [OGB Large Scale Challenge](https://ogb.stanford.edu/neuri
 Must have `docker` and `nvidia-docker`.
 
 # Usage
-"""python
+'''python
+
 nvidia-docker run --gpus all --rm -it jonnytran/ogb-lsc2:0.1 /bin/bash
-"""
+'''
