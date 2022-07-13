@@ -12,8 +12,8 @@ docker pull jonnytran/ogb-lsc2:latest
 ### Interactive shell
 nvidia-docker run --gpus all \
                   -p 8888:8888 \
-                  -v $(pwd)/data/:/root/data/ \
-                  -v $(pwd)/notebooks/:/root/notebooks/ \
+                  -v $(pwd)/data/:/home/jovyan/data/ \
+                  -v $(pwd)/notebooks/:/home/jovyan/notebooks/ \
                   --rm -it jonnytran/ogb-lsc2 /bin/bash
 
 ### If running an interactive Jupyter Notebook inside the container
