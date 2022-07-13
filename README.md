@@ -18,7 +18,6 @@ nvidia-docker run --gpus all
 nvidia-docker run -p 8888:8888 \
                   -v $(pwd)/data/:/root/data/
                   -v $(pwd)/notebooks/:/root/notebooks/
-                  -e JUPYTER_ENABLE_LAB=yes \
                   -e JUPYTER_TOKEN=docker \
                   --name jupyter \
                   -d jonnytran/ogb-lsc2:latest jupyter lab --no-browser --autoreload --log-level='ERROR'
