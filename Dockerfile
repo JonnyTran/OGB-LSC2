@@ -23,16 +23,24 @@ COPY env.yml /tmp/env.yml
 RUN conda install mamba -c conda-forge --name base -y --quiet && \
     mamba env update --name base -f /tmp/env.yml --prune --quiet && \
     mamba clean --all --yes
+RUN mamba update jupyter ipywidgets -y -q
 RUN pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.12.0+${CUDA}.html --quiet &&\
     pip install torch-geometric --quiet
 ### Install any new conda pkgs after this line
 
+# Set up Jupyter Lab config
+ARG NB_USER=jovyan
+RUN useradd -ms /bin/bash ${NB_USER}
+WORKDIR /home/${NB_USER}
+EXPOSE 8888/tcp
 
 # Copy source code & data
 COPY src/ src/
 COPY notebooks/ notebooks/
-COPY data/ data/
+#COPY data/ data/
+RUN chown -R ${NB_USER}:${NB_USER} /home/${NB_USER}/*
+RUN chmod -R 775 /home/${NB_USER}/*
 
 # Script which launches RUN commands in Dockerfile
-WORKDIR /root
+USER 1000
 CMD ["/bin/bash"]
