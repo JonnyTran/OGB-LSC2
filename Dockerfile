@@ -12,18 +12,21 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     find /opt/conda/ -follow -type f -name '*.a' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
     /opt/conda/bin/conda clean -afy
-COPY env.yml /tmp/env.yml
-
-# Install Python package dependencies with mamba
-RUN /opt/conda/bin/conda install mamba -c conda-forge -y && \
-    /opt/conda/bin/mamba env create --name base -f /tmp/env.yml && \
-    /opt/conda/bin/mamba clean --all --yes
-RUN CUDA="cu116" && \
-    /opt/conda/bin/pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.12.0+${CUDA}.html &&\
-    /opt/conda/bin/pip install torch-geometric
-
+ \
+    # Configs
 ENV PATH /opt/conda/bin:$PATH
 WORKDIR /root/
+ENV CUDA="cu116"
+
+# Install Python package dependencies with mamba
+COPY env.yml /tmp/env.yml
+RUN conda install mamba -c conda-forge --name base -y --quiet && \
+    mamba env update --name base -f /tmp/env.yml --prune --quiet && \
+    mamba clean --all --yes
+RUN pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.12.0+${CUDA}.html --quiet &&\
+    pip install torch-geometric --quiet
+### Install any new conda pkgs after this line
+
 
 # Copy source code & data
 COPY src/ src/
