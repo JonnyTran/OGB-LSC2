@@ -31,14 +31,15 @@ RUN pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.1
 # Set up Jupyter Lab config
 ARG NB_USER=jovyan
 RUN useradd -ms /bin/bash ${NB_USER}
-WORKDIR /home/${NB_USER}
 EXPOSE 8888/tcp
+WORKDIR /home/${NB_USER}
 
-# Copy source code & data and set permissions
-COPY --chown=${NB_USER} src/ src/
-COPY --chown=${NB_USER} notebooks/ notebooks/
-COPY --chown=${NB_USER} data/ data/
+# Copy source code & data from host's, with permissions
+COPY --chown=${NB_USER} . .
 
 # Script which launches RUN commands in Dockerfile
 USER 1000
+
+# Download datasets
+RUN python src/dataset/load_dataset.py --dataset MAG240M --root ~/dataset/
 CMD ["/bin/bash"]
