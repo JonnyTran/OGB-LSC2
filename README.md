@@ -8,16 +8,20 @@ Must have `docker` or `nvidia-docker` if using GPUS.
 
 # Usage
 ```sh
-### Pull
+### Pull image
 docker pull jonnytran/ogb-lsc2:latest
 
-### Interactive shell
+### Build & Push to update data/ into the image
+docker build -t jonnytran/ogb-lsc2:0.1 -t jonnytran/ogb-lsc2:latest .
+docker push jonnytran/ogb-lsc2:latest
+
+### Run the container with an interactive shell
 nvidia-docker run --gpus all \
                   -p 8888:8888 \
                   -v $(pwd)/data/:/home/jovyan/data/ \
                   -v $(pwd)/notebooks/:/home/jovyan/notebooks/ \
                   --rm -it jonnytran/ogb-lsc2 /bin/bash
 
-### If running an interactive Jupyter Notebook inside the container
+### Running an interactive Jupyter Notebook inside the container
 jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERROR' --allow-root
 ```
