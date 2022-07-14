@@ -13,15 +13,20 @@ This project contains:
 Must have `docker` or `nvidia-docker` if using GPUS.
 
 # Usage
+## Pull image
 ```sh
-### Pull image
 docker pull jonnytran/ogb-lsc2:latest
+```
 
-### Build & Push to update data/ into the image
-docker build -t jonnytran/ogb-lsc2:0.1 -t jonnytran/ogb-lsc2:latest .
-docker push jonnytran/ogb-lsc2:latest
+## Run the container with an interactive shell
+```sh
+cd <repo_root>
+chmod -R 777 dataset/
+chmod -R 777 notebooks/
+```
 
-### Run the container with an interactive shell
+## Run the container with an interactive shell
+```sh
 nvidia-docker run --gpus all \
                   -p 8888:8888 \
                   -v $(pwd)/dataset/:/home/jovyan/dataset/ \
@@ -30,4 +35,10 @@ nvidia-docker run --gpus all \
 
 ### Running an interactive Jupyter Notebook inside the container
 jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERROR' --allow-root
+```
+
+## Build & Push Changes to Dockerfile
+```sh
+docker build -t jonnytran/ogb-lsc2:0.1 -t jonnytran/ogb-lsc2:latest .
+docker push jonnytran/ogb-lsc2:latest
 ```
