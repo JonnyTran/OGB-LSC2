@@ -27,18 +27,18 @@ RUN pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.1
     pip install torch-geometric --quiet
 ### Install any new conda pkgs after this line
 
-# Configs
+# Permissions
 ARG NB_USER=jovyan
 RUN useradd -ms /bin/bash ${NB_USER}
 EXPOSE 8888/tcp
 WORKDIR /home/${NB_USER}
 
 # Copy source code & data from host's, with permissions
-COPY --chown=${NB_USER} . .
+COPY --chown=${NB_USER} src/ src/
+COPY --chown=${NB_USER} notebooks/ notebooks/
 
-# Script which launches RUN commands in Dockerfile
+# Switch to NB_USER during runtime
 USER 1000
 
-# Download datasets
-# RUN python src/dataset/load_dataset.py --dataset MAG240M --root ~/dataset/
+# Script which launches RUN commands in Dockerfile
 CMD ["/bin/bash"]
