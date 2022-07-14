@@ -34,9 +34,12 @@ nvidia-docker run --gpus all \
                   -v $(pwd)/notebooks/:/home/jovyan/notebooks/ \
                   -v $(pwd)/src/:/home/jovyan/src/ \
                   --rm -it jonnytran/ogb-lsc2 /bin/bash
+```
 
-### Running an interactive Jupyter Notebook inside the container
-jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERROR' --allow-root
+## Running an interactive Jupyter Notebook inside the container
+```
+env PORT=8888
+docker compose up
 ```
 
 ### Build & Push Changes to Dockerfile
