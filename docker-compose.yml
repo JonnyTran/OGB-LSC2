@@ -1,0 +1,18 @@
+version: '0.2'
+services:
+    jupyterlab:
+        image: jonnytran/ogb-lsc2
+        volumes:
+            - ./dataset:/home/jovyan/dataset
+            - ./notebooks:/home/jovyan/notebooks
+            - ./src:/home/jovyan/src
+        ports:
+            - 8890:8888
+        container_name: ogb-lsc2-jupyterlab
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          capabilities: [ gpu ]
+        command: "jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERROR' --allow-root"
