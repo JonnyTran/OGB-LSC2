@@ -7,7 +7,7 @@ services:
             - ./notebooks:/home/jovyan/notebooks
             - ./src:/home/jovyan/src
         ports:
-            - 8888:8888
+            - ${PORT}:8888
         container_name: ogb-lsc2-jupyterlab
         deploy:
             resources:
