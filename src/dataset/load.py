@@ -9,12 +9,10 @@ def load_dataset(args: Namespace) -> InMemoryDataset:
         from ogb.graphproppred import PygGraphPropPredDataset as GraphPropPredDataset
         from ogb.nodeproppred import PygNodePropPredDataset as NodePropPredDataset
         from ogb.linkproppred import PygLinkPropPredDataset as LinkPropPredDataset
-        from ogb.lsc.pcqm4mv2_pyg import PCQM4Mv2Dataset
     elif args.platform == "dgl":
         from ogb.graphproppred import DglGraphPropPredDataset as GraphPropPredDataset
         from ogb.nodeproppred import DglNodePropPredDataset as NodePropPredDataset
         from ogb.linkproppred import DglLinkPropPredDataset as LinkPropPredDataset
-        from ogb.lsc.pcqm4mv2_dgl import PCQM4Mv2Dataset
 
     # Avoid running into prompts while building docker image
     with mock.patch("ogb.lsc.input", new=fake_input("y")), \
@@ -29,6 +27,10 @@ def load_dataset(args: Namespace) -> InMemoryDataset:
             from ogb.lsc import WikiKG90Mv2Dataset
             dataset = WikiKG90Mv2Dataset(root=args.root)
         elif args.dataset == "PCQM4Mv2":
+            if args.platform == "pyg":
+                from ogb.lsc.pcqm4mv2_pyg import PCQM4Mv2Dataset
+            else:
+                from ogb.lsc.pcqm4mv2_dgl import PCQM4Mv2Dataset
             dataset = PCQM4Mv2Dataset(root=args.root)
 
         elif "ogbn" in args.dataset:

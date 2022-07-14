@@ -12,7 +12,7 @@ from tqdm import tqdm
 from src.dataset.load import load_dataset
 
 
-def preprocess_dataset(args):
+def preprocess_multihop_adjs(args):
     dataset = load_dataset(args)
 
     t = time.perf_counter()
