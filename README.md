@@ -18,7 +18,7 @@ Must have `docker` or `nvidia-docker` if using GPUS.
 docker pull jonnytran/ogb-lsc2:latest
 ```
 
-## Run the container with an interactive shell
+## Set correct permissions to mount datasets to the container
 ```sh
 cd <repo_root>
 chmod -R 777 dataset/
