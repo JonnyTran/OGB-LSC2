@@ -3,7 +3,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y wget \
     && rm -rf /var/lib/{apt,dpkg,cache,log}
 SHELL ["/bin/bash", "-c"]
 
-# Install miniconda
+# Install conda Python distribution
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
@@ -17,12 +17,12 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 ENV PATH /opt/conda/bin:$PATH
 ENV CUDA="cu116"
 
-# Install Python package dependencies with mamba
+# Install project package dependencies from env.yml with mamba
 COPY env.yml /tmp/env.yml
 RUN conda install mamba -c conda-forge --name base -y --quiet && \
     mamba env update --name base -f /tmp/env.yml --prune --quiet && \
     mamba clean --all --yes
-RUN mamba update jupyter ipywidgets -y -q
+RUN mamba update jupyter ipywidgets jupyterlab_widgets -y -q
 RUN pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.12.0+${CUDA}.html --quiet && \
     pip install torch-geometric --quiet
 ### Install any new conda pkgs after this line
