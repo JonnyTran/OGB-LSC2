@@ -27,7 +27,7 @@ RUN pip install torch-scatter torch-sparse -f https://data.pyg.org/whl/torch-1.1
     pip install torch-geometric --quiet
 ### Install any new conda pkgs after this line
 
-# Set up Jupyter Lab config
+# Configs
 ARG NB_USER=jovyan
 RUN useradd -ms /bin/bash ${NB_USER}
 EXPOSE 8888/tcp
