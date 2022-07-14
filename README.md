@@ -24,7 +24,7 @@ docker push jonnytran/ogb-lsc2:latest
 ### Run the container with an interactive shell
 nvidia-docker run --gpus all \
                   -p 8888:8888 \
-                  -v $(pwd)/data/:/home/jovyan/data/ \
+                  -v $(pwd)/dataset/:/home/jovyan/dataset/ \
                   -v $(pwd)/notebooks/:/home/jovyan/notebooks/ \
                   --rm -it jonnytran/ogb-lsc2 /bin/bash
 
