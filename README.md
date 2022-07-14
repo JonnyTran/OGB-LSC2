@@ -1,7 +1,7 @@
 # OGB-LSC2
 Docker set up for the [OGB Large Scale Challenge](https://ogb.stanford.edu/neurips2022/) with graph neural networks.
 
-The [jonnytran/ogb-lsc2](https://hub.docker.com/r/jonnytran/ogb-lsc2) docker image uses the OGB datasets at the container's mounted `~/dataset/` directory and codes at `~/src/` copied from this github repo. When running, the container will write persistent data to the host's `<repo_dir>/dataset/`, as well as `<repo_dir>/notebooks/` if you're using Jupyter.
+The [jonnytran/ogb-lsc2](https://hub.docker.com/r/jonnytran/ogb-lsc2) uses the OGB datasets at the mounted `~/dataset/` directory and codes at `~/src/` copied from this github repo. When running, the container will write persistent data to the host's `<repo_dir>/dataset/` as well as `<repo_dir>/notebooks/` if you're using Jupyter within the .
 
 This project contains:
 
@@ -31,6 +31,7 @@ nvidia-docker run --gpus all \
                   -p 8888:8888 \
                   -v $(pwd)/dataset/:/home/jovyan/dataset/ \
                   -v $(pwd)/notebooks/:/home/jovyan/notebooks/ \
+                  -v $(pwd)/src/:/home/jovyan/src/ \
                   --rm -it jonnytran/ogb-lsc2 /bin/bash
 
 ### Running an interactive Jupyter Notebook inside the container
@@ -39,6 +40,6 @@ jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERRO
 
 ## Build & Push Changes to Dockerfile
 ```sh
-docker build -t jonnytran/ogb-lsc2:0.1 -t jonnytran/ogb-lsc2:latest .
+docker build -t jonnytran/ogb-lsc2:<tag> -t jonnytran/ogb-lsc2:latest .
 docker push jonnytran/ogb-lsc2:latest
 ```
