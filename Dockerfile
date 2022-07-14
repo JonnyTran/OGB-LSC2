@@ -15,7 +15,6 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 # Configs
 ENV PATH /opt/conda/bin:$PATH
-WORKDIR /root/
 ENV CUDA="cu116"
 
 # Install Python package dependencies with mamba
@@ -41,5 +40,5 @@ COPY --chown=${NB_USER} . .
 USER 1000
 
 # Download datasets
-RUN python src/dataset/load_dataset.py --dataset MAG240M --root ~/dataset/
+# RUN python src/dataset/load_dataset.py --dataset MAG240M --root ~/dataset/
 CMD ["/bin/bash"]

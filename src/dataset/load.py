@@ -1,8 +1,10 @@
 from argparse import ArgumentParser, Namespace
 from unittest import mock
 
+from torch_geometric.data import InMemoryDataset
 
-def load_dataset(args: Namespace):
+
+def load_dataset(args: Namespace) -> InMemoryDataset:
     if args.platform == "pyg":
         from ogb.graphproppred import PygGraphPropPredDataset as GraphPropPredDataset
         from ogb.nodeproppred import PygNodePropPredDataset as NodePropPredDataset
