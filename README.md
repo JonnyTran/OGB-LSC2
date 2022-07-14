@@ -13,16 +13,17 @@ This project contains:
 Must have `docker` or `nvidia-docker` if using GPUS.
 
 # Usage
-## Pull image
+### Pull image
 ```sh
 docker pull jonnytran/ogb-lsc2:latest
 ```
 
-## Set correct permissions to mount datasets to the container
+### Set correct permissions to mount datasets to the container
 ```sh
 cd <repo_root>
 chmod -R 777 dataset/
 chmod -R 777 notebooks/
+chmod -R 777 src/
 ```
 
 ## Run the container with an interactive shell
@@ -38,7 +39,7 @@ nvidia-docker run --gpus all \
 jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --autoreload --log-level='ERROR' --allow-root
 ```
 
-## Build & Push Changes to Dockerfile
+### Build & Push Changes to Dockerfile
 ```sh
 docker build -t jonnytran/ogb-lsc2:<tag> -t jonnytran/ogb-lsc2:latest .
 docker push jonnytran/ogb-lsc2:latest
