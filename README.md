@@ -38,7 +38,7 @@ nvidia-docker run --gpus all \
 
 ## Running an interactive Jupyter Notebook inside the container
 ```
-# PORT environment env in .env
+# Set PORT environment variable in .env
 docker compose up
 ```
 
